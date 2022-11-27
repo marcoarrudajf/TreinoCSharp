@@ -10,16 +10,20 @@ namespace TreinoCSharp
 {
     class Program
     {
-        enum Cor { Azul, Verde , Amarelo, Vermelho }
+        enum Cor { Azul, Verde, Amarelo, Vermelho }
+        enum Opcao { Criar = 1, Deletar, editar, Listar, Atualizar }
         static void Main(string[] args)
         {
             //CalculoIdade();
             //CalcularNota();
             //CalcularNota();
             //CalcularNota();
-            FunctionSwitch();
+            //FunctionSwitch();
             // ParaCadaUm();
-            FuncEnum();
+            //FuncEnum();
+            //FuncDoWile();
+            //FuncWhile();
+            FuncFor();
 
 
         }
@@ -148,17 +152,123 @@ namespace TreinoCSharp
                 "gabriela"
             };
 
-            for(int i = 0; i < profissional.Length; i++)
+            for (int i = 0; i < profissional.Length; i++)
             {
-            Console.WriteLine(profissional[i]);
+                Console.WriteLine(profissional[i]);
             }
-        
+
         }
 
         static void FuncEnum()
         {
             Cor corFavorita = Cor.Amarelo;
             Console.WriteLine(corFavorita);
+        }
+
+        static void EdicaoEnum()
+        {
+            Console.WriteLine("Selecione uma das opoções abaixo: ");
+            Console.WriteLine("1 - Criar\n2 - Deletar\n3 - Editar\n4 - Listar\n5 - Atualizar");
+            int idEscolhido = int.Parse(Console.ReadLine());
+
+            Opcao selecionado = (Opcao)idEscolhido;
+
+            //Console.WriteLine(selecionado);
+
+
+            //switch (idEscolhido)
+            //{
+            //    case 1:
+            //        Console.WriteLine("Abrir função criar");
+            //        break;
+            //    case 2:
+            //        Console.WriteLine("Podemos deletar");
+            //        break;
+            //    case 3:
+            //        Console.WriteLine("Edição permitida");
+            //        break;
+            //    case 4:
+            //        Console.WriteLine("Listar os itens");
+            //        break;
+            //    case 5:
+            //        Console.WriteLine("Atualizar dados");
+            //        break;
+            //    default:
+            //        Console.WriteLine("ERRO O número escolhido não corresponde a um id valido.");
+            //        break;
+            //}
+
+            switch (selecionado)
+            {
+                case Opcao.Criar:
+                    Console.WriteLine("Abrir função criar");
+                    break;
+                case Opcao.Deletar:
+                    Console.WriteLine("Podemos deletar");
+                    break;
+                case Opcao.editar:
+                    Console.WriteLine("Edição permitida");
+                    break;
+                case Opcao.Listar:
+                    Console.WriteLine("Listar os itens");
+                    break;
+                case Opcao.Atualizar:
+                    Console.WriteLine("Atualizar dados");
+                    break;
+                default:
+                    Console.WriteLine("ERRO O número escolhido não corresponde a um id valido.");
+                    break;
+            }
+        }
+
+        static void FuncWhile()
+        {
+            int cont = 0;
+            while (cont < 10)
+            {
+                Console.WriteLine(cont);
+                if (cont == 8)
+                {
+                    Console.WriteLine("Achamos o 8");
+                    break;
+                }
+                cont++;
+            }
+            Console.WriteLine("Fim de linha");
+        }
+
+        //static void FuncDoWile()
+        //{
+        //    int cont = 20;
+        //    do { cont++; }
+        //    while (cont < 10);
+
+        //    Console.WriteLine(cont);
+
+        //}
+
+        static void FuncForEach()
+        {
+            int[] medicoExc = { 2, 58, 11 };
+            int[] medicoIncluso = { 2, 8, 6, 69, 42, 58, 1, 11 };
+            //Console.WriteLine(medicoIncluso[0]);
+
+            foreach (int i in medicoExc)
+            {
+                if (i != 0)
+                {
+                    Console.WriteLine("Medicos Exclusos " + i);
+                }
+            }
+        }
+
+        static void FuncFor()
+        {
+            int[] medicoIncluso = { 2, 8, 6, 69, 42, 58, 1, 11 };
+            for (int i = 0; i < medicoIncluso.Length; i++)
+            {
+                Console.WriteLine(medicoIncluso[i]);
+            }
         }
     }
 }
