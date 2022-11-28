@@ -12,6 +12,7 @@ namespace TreinoCSharp
     {
         enum Cor { Azul, Verde, Amarelo, Vermelho }
         enum Opcao { Criar = 1, Deletar, editar, Listar, Atualizar }
+        enum DiaSemana { Domingo = 1, Segunda, Terça, Quarta, Quinta, Sexta, sabado }
         static void Main(string[] args)
         {
             //CalculoIdade();
@@ -23,9 +24,16 @@ namespace TreinoCSharp
             //FuncEnum();
             //FuncDoWile();
             //FuncWhile();
-            FuncFor();
-
-
+            //FuncFor();
+            //FuncVenda();
+            //ConvIntParse();
+            //BitWiseUso();
+            //DiaSemanaEnum();
+            //FuncCast();
+            //IfElseAninhado();
+            //FuncArray();
+            //FuncArrayBiDirec();
+            FuncSenha();
         }
 
         static void CalculoIdade()
@@ -270,5 +278,210 @@ namespace TreinoCSharp
                 Console.WriteLine(medicoIncluso[i]);
             }
         }
+
+
+        //CFB CURSOS - FORMATANDO SAIDA
+
+        static void FuncVenda()
+        {
+            double valorCompra = 5.50;
+            double lucro = 0.35;
+            string[] produto = { "Coxinha", "Pastel", "Cigarrete" };
+            double valorVenda = valorCompra + (valorCompra * lucro);
+
+            Console.WriteLine("Salgado........:{0,10}", produto[1]);
+            Console.WriteLine("valor..........:{0,10:c} ", valorCompra);
+            Console.WriteLine("lucro..........:{0,10:p} ", lucro);
+            Console.WriteLine("Valor final....:{0,10:c} ", valorVenda);
+
+        }
+
+        static void ConvIntParse()
+        {
+            int val1, val2, soma;
+            Console.WriteLine("Digite o peirmeiro valor: ");
+            val1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o segundo valor: ");
+            val2 = Convert.ToInt32(Console.ReadLine());
+            soma = val1 + val2;
+            Console.WriteLine("O valor de {0} mais {1} é igual a {2}", val1, val2, soma);
+
+        }
+
+        static void BitWiseUso()
+        //a função bitwise ou operadores de shift (<< e >>)      << dobrar valor  e >> Metade 
+        {
+            int dobro = 20;
+            int metade = 20;
+            dobro = dobro << 2;
+            metade = metade >> 2;
+            Console.WriteLine(metade);
+            Console.WriteLine(dobro);
+        }
+        static void DiaSemanaEnum()
+        {
+            int dia = int.Parse(Console.ReadLine());
+
+        inicio:
+
+            DiaSemana diaFolga = (DiaSemana)dia;
+
+            switch (diaFolga)
+            {
+                case DiaSemana.Domingo:
+                    Console.WriteLine("Hoje é nossa folga " + diaFolga);
+                    break;
+                case DiaSemana.Segunda:
+                case DiaSemana.Terça:
+                case DiaSemana.Quarta:
+                case DiaSemana.Quinta:
+                case DiaSemana.Sexta:
+                    Console.WriteLine("Hoje é trabalho " + diaFolga);
+                    break;
+                case DiaSemana.sabado:
+                    Console.WriteLine("Hoje é nossa folga " + diaFolga);
+                    break;
+                default:
+                    Console.WriteLine("Nenhum dia escolhido");
+                    break;
+
+            }
+
+            Console.WriteLine("Escolher outro dia?");
+
+            // função  goto
+
+            dia = int.Parse(Console.ReadLine());
+            if (dia > 0 & dia < 8)
+            {
+                goto inicio;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Fim da execução!");
+            }
+
+        }
+
+        //conversão em typecast quando a conver~sao não é implicita ´precisamos converte-la com Convert ou Parse.
+
+        static void FuncCast()
+        {
+            float n2 = 10.5f;
+            // int n1 = Convert.ToInt32(n2);
+            // int n1 = (int)n2;
+
+            int n3 = 20;
+            short n4 = (short)n3;
+
+            Console.WriteLine(n4 + n2);
+
+        }
+
+        static void IfElseAninhado()
+        {
+            decimal nota1, nota2, nota3, media;
+            Console.WriteLine("Digite as três notas em sequência: (Valor máximo 10)");
+            nota1 = decimal.Parse(Console.ReadLine());
+            nota2 = decimal.Parse(Console.ReadLine());
+            nota3 = decimal.Parse(Console.ReadLine());
+            media = (nota1 + nota2 + nota3) / 3;
+
+            if (media > 6)
+            {
+                if (media > 9)
+                {
+                    Console.WriteLine("Aprovado com louvor. Nota: " + media.ToString("F"));
+                }
+                else
+                {
+                    Console.WriteLine("Aprovado. Nota: " + media.ToString("F"));
+                }
+            }
+            else if (media < 4)
+            {
+                Console.WriteLine("Reprovado. Nota: " + media.ToString("F"));
+            }
+            else
+            {
+                Console.WriteLine("Prova final para tentar ser aprovado. Nota: " + media.ToString("F"));
+            }
+
+        }
+
+        static void FuncArray()
+        {
+
+            //Formas de declarar arrays
+
+            int[] num = new int[5];
+            num[0] = 10;
+            num[1] = 25;
+            num[2] = 265;
+            num[3] = 523;
+            num[4] = 53;
+
+            int[] num1 = new int[3] { 56, 84, 5 };
+            int[] num2 = { 5, 87, 26 };
+
+            foreach (int i in num)
+            {
+                foreach (int j in num1)
+                {
+                    Console.WriteLine(j);
+                }
+                Console.WriteLine(i);
+            }
+
+            for (int i = 0; i < num1.Length; i++)
+            {
+                Console.WriteLine("Numero For 'i' " + num1[i]);
+                for (int j = 0; j < num2.Length; j++)
+                {
+                    Console.WriteLine("Numero For 'j' " + num2[j]);
+                }
+            }
+        }
+
+        static void FuncArrayBiDirec()
+        {
+            int[,] num = new int[3, 5] {
+                {2,6,8,9,4 }, //linha 0
+                {5,56,8,3,4 }, //linha 1
+                {85,64,35,98,101 }  //linha 2
+            };
+            if (num[1, 3] < num[2, 1])
+            {
+                Console.WriteLine("true " + num[1, 3]);
+            }
+            else
+            {
+                Console.WriteLine("false " + num[2, 1]);
+            }
+
+            Console.WriteLine(num[0, 4]);
+        }
+
+
+        //senha
+
+        static void FuncSenha()
+        {
+            string senha = "123";
+            string senhaDig;
+            int tentativas = 0;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Digite sua senha:");
+                senhaDig = Console.ReadLine();
+                tentativas++;
+            } while (senha != senhaDig);
+
+            Console.Clear();
+            Console.WriteLine("Senha correta, número de tentativas {0}", tentativas);
+        }
+
     }
 }
