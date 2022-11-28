@@ -33,7 +33,8 @@ namespace TreinoCSharp
             //IfElseAninhado();
             //FuncArray();
             //FuncArrayBiDirec();
-            FuncSenha();
+            //FuncSenha();
+            FuncManipulandoArray();
         }
 
         static void CalculoIdade()
@@ -481,6 +482,84 @@ namespace TreinoCSharp
 
             Console.Clear();
             Console.WriteLine("Senha correta, número de tentativas {0}", tentativas);
+        }
+
+        static void FuncManipulandoArray()
+        {
+            int[] vet = new int[5];
+            int[] vet1 = new int[5];
+            int[] vet2 = new int[5];
+            int[,] matriz = new int[2, 5] { { 1, 3, 5, 6, 4 }, { 25, 4, 53, 2, 8 } };
+
+            Random random = new Random();
+
+            for (int i = 0; i < vet.Length; i++)
+            {
+                vet[i] = random.Next(50);
+            }
+
+            Console.WriteLine("Elementos de vet");
+            foreach (int i in vet)
+            {
+                Console.WriteLine(i);
+            }
+
+            //BinarySearch
+            Console.WriteLine("BinarySearch");
+            int procurado = 33;
+            int pos = Array.BinarySearch(vet, procurado);
+            Console.WriteLine("O valor {0} está na posição {1}", procurado, pos);
+            Console.WriteLine("--------------------------------");
+
+            //metodo copy
+
+            Console.WriteLine("Copiar");
+            Array.Copy(vet, vet1, vet.Length);
+            foreach (int i in vet1)
+            {
+                Console.WriteLine(i);
+            }
+            Array.Sort(vet);
+            Array.Reverse(vet);
+
+            Console.WriteLine("-------------------------------");
+
+
+            //Copiar para um testino
+
+            Console.WriteLine("Copiar para:");
+            vet.CopyTo(vet2, 0);
+            foreach (int i in vet2)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("---------------------------------");
+
+            //GetLowerBound retorna o menor indice
+            Console.WriteLine("getLowerBound");
+            int menorIndice = vet.GetLowerBound(0);
+            int menorMatriz = matriz.GetLowerBound(1);
+            Console.WriteLine("Menor indice do vet {0}", menorIndice);
+            Console.WriteLine(menorMatriz);
+            Console.WriteLine("---------------------------------");
+
+            //getValue retorna um valor 
+
+            Console.WriteLine("GetValue");
+            int valor1 = Convert.ToInt32(vet.GetValue(3));
+            int valor2 = Convert.ToInt32(matriz.GetValue(1, 2));
+            Console.WriteLine("O valor da posição 3 do vet: {0}", valor1);
+            Console.WriteLine("O valor da posição linah 1 coluna 3 do matriz: {0}", valor2);
+            Console.WriteLine("---------------------------------"); Console.WriteLine("GetValue");
+
+
+            Console.WriteLine("IndexOf");
+            int posInd = Array.IndexOf(vet, 3);
+            Console.WriteLine("O valor da posição 3 do vet: {0}", posInd);
+            Console.WriteLine("---------------------------------");
+
+
+            //reverse
         }
 
     }
